@@ -18,12 +18,12 @@
                 <div class="d-flex justify-content-center mb-4">
                     <img src="{{ asset('assets/logo-signup-login.png') }}" alt="" width="240">
                 </div>
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{ route('auth.register') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">
                         <label for="" class="fw-semibold my-2">Nama Lengkap</label><label for="" class="text-danger">*</label>
-                        <input type="text" class="form-control mb-2" name="name" id="" placeholder="Masukkan nama lengkap Anda" style="border-width: 2px;">
+                        <input type="text" class="form-control mb-2" name="name" id="" placeholder="Masukkan nama lengkap Anda" style="border-width: 2px;" value="{{old('name')}}">
 
                         @error('name')
                         <div class="alert alert-danger">
@@ -34,7 +34,7 @@
 
                     <div class="form-group">
                         <label for="" class="fw-semibold my-2">Nomor Telepon</label><label for="" class="text-danger">*</label>
-                        <input type="text" class="form-control mb-2" name="phone" id="" placeholder="Masukkan nomor telepon Anda" style="border-width: 2px;">
+                        <input type="text" class="form-control mb-2" name="phone" id="" placeholder="Masukkan nomor telepon Anda" style="border-width: 2px;" value="{{old('phone')}}">
 
                         @error('phone')
                         <div class="alert alert-danger">
@@ -45,7 +45,7 @@
 
                     <div class="form-group">
                         <label for="" class="fw-semibold my-2">Email</label><label for="" class="text-danger">*</label>
-                        <input type="email" class="form-control mb-2" name="email" id="" placeholder="Masukkan email Anda" style="border-width: 2px;">
+                        <input type="email" class="form-control mb-2" name="email" id="" placeholder="Masukkan email Anda" style="border-width: 2px;" value="{{old('email')}}">
 
                         @error('email')
                         <div class="alert alert-danger">
@@ -56,7 +56,7 @@
 
                     <div class="form-group">
                         <label for="" class="fw-semibold my-2">Kata Sandi</label><label for="" class="text-danger">*</label>
-                        <input type="password" class="form-control mb-2" name="password" id="" placeholder="Masukkan kata sandi Anda" style="border-width: 2px;">
+                        <input type="password" class="form-control mb-2" name="password" id="" placeholder="Masukkan kata sandi Anda" style="border-width: 2px;" value="{{old('password')}}">
 
                         @error('password')
                         <div class="alert alert-danger">
@@ -67,9 +67,9 @@
 
                     <div class="form-group">
                         <label for="" class="fw-semibold my-2">Konfirmasi Kata Sandi</label><label for="" class="text-danger">*</label>
-                        <input type="password" class="form-control mb-2" name="confirmation" id="" placeholder="Masukkan konfirmasi kata sandi Anda" style="border-width: 2px;">
+                        <input type="password" class="form-control mb-2" name="confirm_password" id="" placeholder="Masukkan konfirmasi kata sandi Anda" style="border-width: 2px;">
 
-                        @error('confirmation')
+                        @error('confirm_password')
                         <div class="alert alert-danger">
                             <strong>{{ $message }}</strong>
                         </div>
@@ -78,17 +78,23 @@
 
                     <div class="btn-group my-2" data-toggle="buttons">
                         <div class="align-items-start">
-                            <input type="checkbox" name="" id="" autocomplete="off">
+                            <input type="checkbox" name="tnc" id="tnc" autocomplete="off">
                         </div>
                         <label for="" class="ms-2">Dengan menggunakan Campustar, saya menyetujui syarat dan ketentuan yang berlaku</label>
+
+                        @error('tnc')
+                        <div class="alert alert-danger">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                     
-                    <button type="submit" class="btn btn-primary w-100 mt-3">Daftar</button>
+                    <button type="submit" class="btn btn-primary w-100 mt-3" style="color: #FFFFFF; font-weight: 600; border-color: #008DFF;">Daftar</button>
                 </form>
 
                 <div class="akun d-flex align-items-center justify-content-center mt-3 mb-5">
                     <p>Sudah punya akun Campustar?</p>
-                    <a href="/login" class="ms-2 text-decoration-none">
+                    <a href="/masuk" class="ms-2 text-decoration-none">
                         <p class="fw-semibold text-primary">Masuk di sini</p>
                     </a>
                 </div>

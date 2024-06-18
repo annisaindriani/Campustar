@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('career_aptitude_test_questions', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->string('question', 1000)->unique();
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('career_aptitude_test_questions');
+        Schema::dropIfExists('password_resets');
     }
 };

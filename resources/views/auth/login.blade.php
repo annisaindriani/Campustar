@@ -18,12 +18,18 @@
                 <div class="d-flex justify-content-center mb-4">
                     <img src="{{ asset('assets/logo-signup-login.png') }}" alt="" width="240">
                 </div>
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{ route('auth.authenticate') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">
+                        @if ($errors->has('message'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('message') }}
+                            </div>
+                        @endif
+
                         <label for="" class="fw-semibold my-2">Email</label><label for="" class="text-danger">*</label>
-                        <input type="email" class="form-control mb-2" name="email" id="" placeholder="Masukkan email Anda" style="border-width: 2px;">
+                        <input type="email" class="form-control mb-2" name="email" id="email" placeholder="Masukkan email Anda" style="border-width: 2px;" value="{{old('email')}}">
 
                         @error('email')
                         <div class="alert alert-danger">
@@ -34,7 +40,7 @@
 
                     <div class="form-group">
                         <label for="" class="fw-semibold my-2">Kata Sandi</label><label for="" class="text-danger">*</label>
-                        <input type="password" class="form-control mb-2" name="password" id="" placeholder="Masukkan kata sandi Anda" style="border-width: 2px;">
+                        <input type="password" class="form-control mb-2" name="password" id="password" placeholder="Masukkan kata sandi Anda" style="border-width: 2px;">
 
                         @error('password')
                         <div class="alert alert-danger">
@@ -43,14 +49,15 @@
                         @enderror
                     </div>
 
-                    <a href="" class="fw-semibold my-2 text-decoration-none">Lupa kata sandi?</a>
+                    <a href="" class="fw-semibold my-2 text-decoration-none" style="font-size: 14px;">Lupa kata sandi?</a>
 
-                    <button type="submit" class="btn btn-primary w-100 mt-3">Masuk</button>
+                    <button type="submit" class="btn btn-primary w-100 mt-3" style="color: #FFFFFF; font-weight: 600; border-color: #008DFF;">Masuk</button>
+
                 </form>
 
                 <div class="akun d-flex align-items-center justify-content-center mt-3 mb-5">
                     <p>Belum punya akun Campustar?</p>
-                    <a href="" class="ms-2 text-decoration-none">
+                    <a href="/daftar" class="ms-2 text-decoration-none">
                         <p class="fw-semibold text-primary">Daftar di sini</p>
                     </a>
                 </div>

@@ -13,9 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('career_aptitude_test_questions', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('question', 1000)->unique();
+            $table->string('name');
+            $table->string('phone');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('photo');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('career_aptitude_test_questions');
+        Schema::dropIfExists('users');
     }
 };

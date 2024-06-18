@@ -2,11 +2,30 @@
     font-family: "Inter", sans-serif;
     font-style: normal;
 } */
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    flex: 1;
+}
 
 banner-navbar{
     background-image: url('../assets/banner-home.png');
     background-size: 100%;
     background-repeat: no-repeat; 
+}
+
+.masuk{
+    color: #008DFF; 
+    font-weight: 700; 
+    border-color: #008DFF;
 }
 
 .banner-img{
@@ -254,4 +273,34 @@ h4{
 .list-forum{
     border: 1px solid #73C1FF;
     padding-top: 20px;
+}
+
+.inputfile{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label{
+    /* font-size: 1.25em; */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #008DFF;
+    border-radius: 5px;
+    color: #008DFF;
+    background-color: white;
+    display: inline-block;
+}
+
+.inputfile + label{
+	cursor: pointer; 
+}
+
+.nav-profile-pic{
+    object-fit: cover;
 }

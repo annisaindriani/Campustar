@@ -21,7 +21,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card fitur">
-                    <a href="/campus" class="text-decoration-none">
+                    <a href="/perguruantinggi" class="text-decoration-none">
                         <img src="{{ asset('assets/logo-kampus.png') }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title fitur">Perguruan Tinggi</h5>
@@ -31,7 +31,7 @@
             </div>
             <div class="col">
                 <div class="card fitur">
-                    <a href="/major" class="text-decoration-none">
+                    <a href="/programstudi" class="text-decoration-none">
                         <img src="{{ asset('assets/logo-prodi.png') }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title fitur">Program Studi</h5>
@@ -41,7 +41,7 @@
             </div>
             <div class="col">
                 <div class="card fitur">
-                    <a href="/mulaites" class="text-decoration-none">
+                    <a href="/tesminatbakat" class="text-decoration-none">
                         <img src="{{ asset('assets/logo-tes-minat.png') }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title fitur">Tes Minat dan Bakat</h5>
@@ -53,210 +53,75 @@
 
         <div class="mt-5 mb-5 position-relative">
             <img class="banner-tes-minat" src="{{ asset('assets/banner-tes-minat.png') }}" alt="">
-            <a href="" class="btn btn-primary position-absolute" style="bottom: 60px; right: 60px; color: #008DFF; font-weight: 700; border-color: #FFFFFF; background-color: #FFFFFF; text-decoration: none;">Ikuti tes minat dan bakat</a>
+            <a href="/tesminatbakat" class="btn btn-primary position-absolute" style="bottom: 60px; right: 60px; color: #008DFF; font-weight: 700; border-color: #FFFFFF; background-color: #FFFFFF; text-decoration: none;">Ikuti tes minat dan bakat</a>
         </div>  
 
         <div id="rec-kampus" class="mt-5">
             <h4>Rekomendasi Perguruan Tinggi</h4>
             <div class="row row-cols-1 row-cols-md-4 g-4 mt-2">
-            <div class="col">
-                    <a href="/detailcampus" class="text-decoration-none">
-                        <div class="card kampus">
-                            <div class="position-relative" style="height: 160px;">
-                                <img src="{{ asset('assets/kampus/binus.jpeg') }}" class="card-img-top" alt="..." style="height: 160px; width: 100%;">
-                                <button type="button" class="btn btn-secondary button-status" style="position: absolute; bottom: 10px; left: 10px;">SWASTA</button>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ asset('assets/kampus/logo binus.png') }}" class="card-img-top" alt="..." style="width: 50px;">
-                                    <h5 class="card-title mb-0">Universitas Bina Nusantara</h5>
-                                </div>  
-
-                                <p class="small">Universitas Bina Nusantara, dijenamakan sebagai Binus University, adalah salah satu universitas swasta Indonesia. Universitas ini bernaung di bawah lembaga pendidikan Bina...</p>
-
-                                <div class="d-flex align-items-center justify-content-between kampus-bottom">
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{ asset('assets/loc.png') }}" class="card-img-top" alt="..." style="width: 19px;">
-                                        <p class="card-title mb-0 ml-2">Jakarta, Indonesia</p>
-                                    </div>
-                                    <div id="akreditasi">
-                                        <p class="mb-0">Akreditasi: A</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                @foreach ($campuses->take(4) as $campus)
                 <div class="col">
-                    <a href="" class="text-decoration-none">
+                    <a href="/perguruantinggi/{{$campus->id}}" class="text-decoration-none">
                         <div class="card kampus">
                             <div class="position-relative" style="height: 160px;">
-                                <img src="{{ asset('assets/kampus/univ indonesia.jpg') }}" class="card-img-top" alt="..." style="height: 160px;">
-                                <button type="button" class="btn btn-secondary button-status" style="position: absolute; bottom: 10px; left: 10px;">NEGERI</button>
+                                <img src="{{asset('assets/kampus/'.$campus->banner)}}" class="card-img-top" alt="..." style="height: 160px; width: 100%;">
+                                <button type="button" class="btn btn-secondary button-status" style="position: absolute; bottom: 10px; left: 10px;">{{$campus->status}}</button>
                             </div>
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('assets/kampus/logo univ.indonesia.png') }}" class="card-img-top" alt="..." style="width: 50px;">
-                                    <h5 class="card-title mb-0">Universitas Indonesia</h5>
+                                    <img src="{{asset('assets/kampus/'.$campus->logo)}}" class="card-img-top" alt="..." style="width: 50px;">
+                                    <h5 class="card-title mb-0">{{$campus->name}}</h5>
                                 </div>  
 
-                                <p class="small">Universitas Indonesia yang biasa disingkat UI adalah perguruan tinggi negeri di Indonesia. UI merupakan salah satu universitas riset atau institusi akademik terkemuka di dunia yang...</p>
+                                <p class="small mt-2">{{ strlen($campus->description) > 150 ? substr($campus->description, 0, 150) . '...' : $campus->description }}</p>
 
                                 <div class="d-flex align-items-center justify-content-between kampus-bottom">
                                     <div class="d-flex align-items-center">
                                         <img src="{{ asset('assets/loc.png') }}" class="card-img-top" alt="..." style="width: 19px;">
-                                        <p class="card-title mb-0 ml-2">Depok, Indonesia</p>
+                                        <p class="card-title mb-0 ml-2">{{$campus->location}}</p>
                                     </div>
                                     <div id="akreditasi">
-                                        <p class="mb-0">Akreditasi: A</p>
+                                        <p class="mb-0">Akreditasi: {{$campus->accreditation}}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col">
-                    <a href="" class="text-decoration-none">
-                        <div class="card kampus">
-                            <div class="position-relative" style="height: 160px;">
-                                <img src="{{ asset('assets/kampus/brawijaya.jpg') }}" class="card-img-top" alt="..." style="height: 160px;">
-                                <button type="button" class="btn btn-secondary button-status" style="position: absolute; bottom: 10px; left: 10px;">NEGERI</button>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ asset('assets/kampus/logo brawijaya.jpeg') }}" class="card-img-top" alt="..." style="width: 50px;">
-                                    <h5 class="card-title mb-0">Universitas Brawijaya</h5>
-                                </div>  
-
-                                <p class="small">Universitas Brawijaya didirikan oleh Presiden Republik Indonesia pada tanggal 11 Juli 1961. UB merupakan kampus elit di Indonesia dengan lebih dari 60.000 mahasiswa...</p>
-
-                                <div class="d-flex align-items-center justify-content-between kampus-bottom">
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{ asset('assets/loc.png') }}" class="card-img-top" alt="..." style="width: 19px;">
-                                        <p class="card-title mb-0 ml-2">Malang, Indonesia</p>
-                                    </div>
-                                    <div id="akreditasi">
-                                        <p class="mb-0">Akreditasi: A</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="" class="text-decoration-none">
-                        <div class="card kampus">
-                            <div class="position-relative" style="height: 160px;">
-                                <img src="{{ asset('assets/kampus/untar.jpg') }}" class="card-img-top" alt="..." style="height: 160px;">
-                                <button type="button" class="btn btn-secondary button-status" style="position: absolute; bottom: 10px; left: 10px;">SWASTA</button>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ asset('assets/kampus/logo untar.jpg') }}" class="card-img-top" alt="..." style="width: 50px;">
-                                    <h5 class="card-title mb-0">Universitas Tarumanagara</h5>
-                                </div>  
-
-                                <p class="small">Universitas Tarumanagara adalah salah satu universitas swasta tertua yang berada di Jakarta, Indonesia. Nama universitas ini berasal dari nama kerajaan Tarumanagara. Universitas...</p>
-
-                                <div class="d-flex align-items-center justify-content-between kampus-bottom">
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{ asset('assets/loc.png') }}" class="card-img-top" alt="..." style="width: 19px;">
-                                        <p class="card-title mb-0 ml-2">Jakarta, Indonesia</p>
-                                    </div>
-                                    <div id="akreditasi">
-                                        <p class="mb-0">Akreditasi: A</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
             </div>
 
             <div class="text-center mt-5 mb-5">
-                <a href="/campus" class="btn btn-outline-primary button-more">Lihat Perguruan Tinggi Lainnya</a>
+                <a href="/perguruantinggi" class="btn btn-outline-primary button-more">Lihat Perguruan Tinggi Lainnya</a>
             </div>
         </div>
         
         <div id="rec-jurusan mt-5">
             <h4>Rekomendasi Program Studi</h4>
             <div class="row row-cols-1 row-cols-md-4 g-4 mt-2">
-            <div class="col">
-                    <a href="/detailmajor" class="text-decoration-none">
-                        <div class="card jurusan">
-                            <div class="position-relative" style="height: 160px;">
-                                <img src="{{ asset('assets/jurusan/teknikinformatika.jpeg') }}" class="card-img-top" alt="..." style="height: 160px; width: 100%;">
-                                <button type="button" class="btn btn-secondary button-status" style="position: absolute; bottom: 10px; left: 10px;">SAINTEK</button>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ asset('assets/jurusan/saintek.png') }}" class="card-img-top" alt="..." style="width: 35px;">
-                                    <h5 class="card-title mb-0">Teknik Informatika</h5>
-                                </div>  
-
-                                <p class="small">Informatika merupakan ilmu yang baik mempelajari terkait penggunaan komputer untuk mengatur dan menganalisis data yang berukuran besar, baik data maupun informa...</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                @foreach ($majors->take(4) as $major)
                 <div class="col">
-                    <a href="" class="text-decoration-none">
+                    <a href="/programstudi/{{$major->id}}" class="text-decoration-none">
                         <div class="card jurusan">
                             <div class="position-relative" style="height: 160px;">
-                                <img src="{{ asset('assets/jurusan/akuntansi.jpg') }}" class="card-img-top" alt="..." style="height: 160px; width: 100%;">
-                                <button type="button" class="btn btn-secondary button-status" style="position: absolute; bottom: 10px; left: 10px;">SOSHUM</button>
+                                <img src="{{asset('assets/jurusan/'.$major->banner)}}" class="card-img-top" alt="..." style="height: 160px; width: 100%;">
+                                <button type="button" class="btn btn-secondary button-status" style="position: absolute; bottom: 10px; left: 10px;">{{$major->status}}</button>
                             </div>
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('assets/jurusan/soshum.png') }}" class="card-img-top" alt="..." style="width: 35px;">
-                                    <h5 class="card-title mb-0">Akuntansi</h5>
+                                    <img src="{{asset('assets/jurusan/'.strtolower($major->status).'.png')}}" class="card-img-top" alt="..." style="width: 35px;">
+                                    <h5 class="card-title mb-0">{{$major->name}}</h5>
                                 </div>  
-
-                                <p class="small">Akuntansi merupakan ilmu yang mempelajari pencatatan, pelaporan, dan analisis keuangan untuk membantu pengambilan keputusan bisnis. Fokus utamanya adalah memastikan...</p>
+                                <p class="small">{{ strlen($major->description) > 150 ? substr($major->description, 0, 150) . '...' : $major->description }}</p>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col">
-                    <a href="" class="text-decoration-none">
-                        <div class="card jurusan">
-                            <div class="position-relative" style="height: 160px;">
-                                <img src="{{ asset('assets/jurusan/kedokteran.jpg') }}" class="card-img-top" alt="..." style="height: 160px; width: 100%;">
-                                <button type="button" class="btn btn-secondary button-status" style="position: absolute; bottom: 10px; left: 10px;">SAINTEK</button>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ asset('assets/jurusan/saintek.png') }}" class="card-img-top" alt="..." style="width: 35px;">
-                                    <h5 class="card-title mb-0">Kedokteran</h5>
-                                </div>  
-
-                                <p class="small">Kedokteran merupakan ilmu yang mempelajari kesehatan dan keterampilan klinis untuk mendiagnosis, merawat, dan mencegah penyakit. Bidang ini mencakup berbagai....</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="" class="text-decoration-none">
-                        <div class="card jurusan">
-                            <div class="position-relative" style="height: 160px;">
-                                <img src="{{ asset('assets/jurusan/farmasi.jpg') }}" class="card-img-top" alt="..." style="height: 160px; width: 100%;">
-                                <button type="button" class="btn btn-secondary button-status" style="position: absolute; bottom: 10px; left: 10px;">SAINTEK</button>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ asset('assets/jurusan/saintek.png') }}" class="card-img-top" alt="..." style="width: 35px;">
-                                    <h5 class="card-title mb-0">Farmasi</h5>
-                                </div>  
-
-                                <p class="small">Farmasi merupakan ilmu yang mempelajari pembuatan, pengelolaan, dan pengendalian obat-obatan serta cara penggunaannya yang aman. Fokusnya juga mencakup penelitian...</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
             </div>
 
             <div class="text-center mt-5">
-                <a href="/major" class="btn btn-outline-primary button-more">Lihat Program Studi Lainnya</a>
+                <a href="/programstudi" class="btn btn-outline-primary button-more">Lihat Program Studi Lainnya</a>
             </div>
         </div>
 

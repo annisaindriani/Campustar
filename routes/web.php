@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CampusController;
 use App\Http\Controllers\CareerAptitudeTestQuestionController;
+use App\Http\Controllers\MajorController;
+use App\Http\Controllers\ResultController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,52 +19,52 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', [CampusController::class, 'showFour'])->name('majors.four');
+
+Route::get('/perguruantinggi', [CampusController::class, 'listCampus']);
+
+Route::get('/perguruantinggi/{id}', [CampusController::class, 'detailCampus']);
+
+Route::get('/programstudi', [MajorController::class, 'listMajor']);
+
+Route::get('/programstudi/{id}', [MajorController::class, 'detailMajor']);
+
+Route::get('/tesminatbakat', function () {
+    return view('test.career-aptitude-start');
 });
 
-Route::get('/career-aptitude-test', [CareerAptitudeTestQuestionController::class, 'index']);
+Route::get('/riwayat/{id}', [ResultController::class, 'showHistory']);
+Route::get('/riwayattes/{id}', [ResultController::class, 'showDetail']);
 
-Route::get('/campus', function () {
-    return view('campus');
-});
-
-Route::get('/major', function () {
-    return view('major');
-});
-
-Route::get('/detailcampus', function () {
-    return view('detailcampus');
-});
-
-Route::get('/detailmajor', function () {
-    return view('detailmajor');
-});
-
-Route::get('/details', function () {
-    return view('details');
-});
-
-Route::get('/signup', function () {
-    return view('signup');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/arsip', function () {
-    return view('arsip');
-});
-
-Route::get('/mulaites', function () {
-    return view('mulaites');
-});
+Route::get('/mulaites', [CareerAptitudeTestQuestionController::class, 'index'])->middleware('auth');
 
 Route::get('/hasiltes', function () {
-    return view('hasiltes');
-});
+    return view('test.career-aptitude-result');
+})->name('career-aptitude-result');
 
-Route::get('/forum', function () {
-    return view('forum');
-});
+Route::post('/hasiltes', [ResultController::class, 'store'])->name('career-aptitude-result.store');
+
+Route::get('/daftar', [AuthController::class, 'register'])->name('auth.register');
+Route::post('/daftar', [AuthController::class, 'store'])->name('auth.store');
+
+Route::get('/masuk', [AuthController::class, 'login'])->name('login');
+Route::post('/masuk', [AuthController::class, 'authenticate'])->name('auth.authenticate');
+
+Route::post('/keluar', [AuthController::class, 'logout'])->name('auth.logout');
+
+Route::get('/editprofile', [AuthController::class, 'edit'])->name('editprofile');
+Route::put('/editprofile', [AuthController::class, 'update'])->name('updateprofile');
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+// Route::get('/details', function () {
+//     return view('details');
+// });
+
+// Route::get('/arsip', function () {
+//     return view('arsip');
+// });
+
+// Route::get('/forum', function () {
+//     return view('forum');
+// });

@@ -8,15 +8,14 @@
             <div class="col-md-4 text-end">
                 <h6 class="mb-2"><strong>Fitur</strong></h6>
                 <ul class="list-unstyled">
-                    <li><a href="/mulaites" class="text-decoration-none" style="color: #00579D;">Tes Minat Bakat</a></li>
-                    <li><a href="/forum" class="text-decoration-none" style="color: #00579D;">Forum Diskusi</a></li>
+                    <li><a href="/tesminatbakat" class="text-decoration-none" style="color: #00579D;">Tes Minat Bakat</a></li>
                 </ul>
             </div>
             <div class="col-md-4 text-end">
                 <h6 class="mb-2"><strong>Layanan</strong></h6>
                 <ul class="list-unstyled">
-                    <li><a href="/campus" class="text-decoration-none" style="color: #00579D;">Info Perguruan Tinggi</a></li>
-                    <li><a href="/major" class="text-decoration-none" style="color: #00579D;">Info Program Studi</a></li>
+                    <li><a href="/perguruantinggi" class="text-decoration-none" style="color: #00579D;">Info Perguruan Tinggi</a></li>
+                    <li><a href="/programstudi" class="text-decoration-none" style="color: #00579D;">Info Program Studi</a></li>
                 </ul>
             </div>
         </div>
@@ -25,8 +24,3 @@
         </div>
     </div>
 </footer>
-
-
-
-
-

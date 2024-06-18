@@ -19,11 +19,23 @@
         </div>  
 
         <div class="text-center mt-5 mb-5">
-            <a href="" class="btn btn-outline-primary button-more">Mulai tes minat & bakat</a>
+            <a href="/mulaites" class="btn btn-outline-primary button-more">Mulai Tes Minat & Bakat</a>
         </div>
+
+        @if(Auth::check())
+            <div class="akun d-flex align-items-center justify-content-center mt-5 mb-5">
+                <p>Sudah pernah mengikuti tes sebelumnya?</p>
+                <a href="/riwayat/{{ Auth::user()->id }}" class="ms-2 text-decoration-none">
+                    <p class="fw-semibold text-primary">Lihat hasil riwayat tes kamu disini</p>
+                </a>
+            </div>
+        @else
+
+        @endif
 
     </div>
 
     @include('components.footer')
+
 </body>
 </html>
